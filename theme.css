@@ -1,10 +1,10 @@
 /* ==============================================================================
    chuanban — Warm Editorial & Long-Form Writing Theme for Obsidian
    Author: chuanban (https://github.com/Anarcadia)
-   Version: 1.0.0
+   Version: 1.0.1
    License: MIT
-   Description: 专为船板小说创作与长篇深度写作定制的 Obsidian 原生独立主题。
-                深度借鉴 Claude Desktop / Antigravity 官方视觉与排版哲学，
+   Description: 专为小说创作与长篇深度非虚构写作定制的 Obsidian 原生独立主题。
+                融合现代人文编辑室与实体书卷排版哲学，
                 实现温暖、较高对比度、纸墨实体感与极致护眼的现代化写作环境。
    ------------------------------------------------------------------------------
    设计规范与理念：
@@ -13,15 +13,15 @@
       - 侧边栏/导航/Tab栏底色：暖燕麦轻米色 (#F7F5F0)
       - 选中/激活态胶囊底色：深阶暖燕麦 (#ECE9E1)
       - 次级卡片/输入框底色：浅暖米棕 (#F9F7F2)
-      - 强调色：Anthropic 标志性陶土砖红 (#D97757)，悬停 (#C56345)
+      - 强调色：温暖陶土砖红 (#D97757)，悬停 (#C56345)
       - 选区与高亮：低饱和护眼柔和草绿圈选 + 经典温润通用淡暖黄高亮 (不刺眼)
-      - 分割线与中缝：高对比清晰单像素实线 (rgba(0, 0, 0, 0.15) ~ #E0D4C3)
+      - 分割线与中缝：高对比清晰单像素实线 (rgba(0, 0, 0, 0.14) ~ #E0D4C3)
    2. 字体与排版层次 (Typography & Layout)：
-      - 18px 黄金基准字号、1.78 呼吸行高、0.38em 段落舒展停顿
+      - 18px 黄金基准字号、1.78 呼吸行高、0.38em/0.95em 段落舒展停顿
       - 0.25px 微润墨纸墨柔化滤镜，抚平数字矢量硬切角，呈现活字压印质感
       - 引用块：纯净 3px 陶土指示竖线 + 16px 呼吸留白，彻底移除重复 > 箭头
       - 原生兼容：完整支持 Obsidian 官方设置菜单（正文字体、字号滑块、窗口缩放）
-      - 双排版预设一键切换：Anti更纱打字机体 (默认) ⇄ Notion Desktop衬线宋体
+      - 双排版预设切换：更纱打字机体 (默认) ⇄ 经典衬线宋体
       - 悬浮预览卡解耦锁定：13px / 1.52 行高固定高密度信息卡片
    ============================================================================== */
 
@@ -36,9 +36,9 @@ settings:
       allowEmpty: false
       default: preset-typewriter
       options:
-          - label: "Anti 更纱打字机体 (默认 · 温暖厚重活字感 · 1.78行高)"
+          - label: "更纱打字机体 (默认 · Sarasa Mono Slab SC · 1.78行高)"
             value: preset-typewriter
-          - label: "Notion Desktop 衬线宋体 (复刻版 · 西文无衬线+全角宋体 · 1.68行高)"
+          - label: "经典衬线宋体 (书卷版 · 西文无衬线 + 全角宋体-简 · 1.68行高)"
             value: preset-notion-serif
     - id: line-height-normal
       title: 正文行高 (Body Line Height)
@@ -57,7 +57,8 @@ settings:
 
 /* ==============================================================================
    1. 字体声明 (@font-face)
-   - 更纱等宽粗衬线打字机体 (@font-face 本地多别名与 PostScript 强绑定，防止 Chromium TTC 漏载)
+   - 开源更纱等宽粗衬线打字机体 (Sarasa Mono Slab SC, SIL OFL 1.1)
+   - 衬线预设专用西文/数字无衬线 Unicode 范围隔离层
    ============================================================================== */
 @font-face {
   font-family: 'Sarasa Mono Slab SC';
@@ -87,45 +88,10 @@ settings:
   font-style: normal;
   font-display: swap;
 }
-@font-face {
-  font-family: 'Anthropic Serif';
-  src: local('Anthropic Serif Web'), local('Anthropic Serif Web Text Light'), local('Anthropic Serif');
-  font-weight: 300 500;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: 'Anthropic Serif';
-  src: local('Anthropic Serif Bold'), local('Anthropic Serif Web Bold');
-  font-weight: 600 900;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: 'Anthropic Sans';
-  src: local('Anthropic Sans Web'), local('Anthropic Sans Web Text'), local('Anthropic Sans');
-  font-weight: 300 500;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: 'Anthropic Sans';
-  src: local('Anthropic Sans Bold'), local('Anthropic Sans Web Bold');
-  font-weight: 600 900;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: 'Anthropic Mono';
-  src: local('Anthropic Mono Web'), local('Anthropic Mono');
-  font-weight: 300 700;
-  font-style: normal;
-  font-display: swap;
-}
 /* 衬线预设专用西文/数字无衬线隔离层：严格限定拉丁与数字 Unicode 范围，绝不拦截中文落入宋体 */
 @font-face {
   font-family: 'Chuanban Western Sans';
-  src: local('Anthropic Sans Web'), local('Anthropic Sans Web Text'), local('Anthropic Sans'), local('SF Pro Text'), local('.AppleSystemUIFont'), local('Inter'), local('Helvetica Neue'), local('Arial');
+  src: local('SF Pro Text'), local('.AppleSystemUIFont'), local('Inter'), local('DM Sans'), local('Helvetica Neue'), local('Segoe UI'), local('Arial');
   unicode-range: U+0000-024F, U+0250-02AF, U+1E00-1EFF, U+2000-206F, U+2070-209F, U+20A0-20CF, U+2100-214F;
   font-weight: 300 500;
   font-style: normal;
@@ -133,7 +99,7 @@ settings:
 }
 @font-face {
   font-family: 'Chuanban Western Sans';
-  src: local('Anthropic Sans Bold'), local('Anthropic Sans Web Bold'), local('SF Pro Text Bold'), local('Inter Bold'), local('Helvetica Neue Bold'), local('Arial Bold');
+  src: local('SF Pro Text Bold'), local('Inter Bold'), local('DM Sans Bold'), local('Helvetica Neue Bold'), local('Segoe UI Bold'), local('Arial Bold');
   unicode-range: U+0000-024F, U+0250-02AF, U+1E00-1EFF, U+2000-206F, U+2070-209F, U+20A0-20CF, U+2100-214F;
   font-weight: 600 900;
   font-style: normal;
@@ -145,18 +111,18 @@ settings:
    - 挂载在 body 上以直接覆盖 Obsidian app.css 的 body 默认变量声明
    ============================================================================== */
 body {
-  /* 字体族全局声明 */
-  /* UI 控件：Anthropic Sans + 苹果原生人文黑体 (苹方/冬青) */
-  --ag-font-ui: 'Anthropic Sans', 'Anthropic Sans Web', -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Hiragino Sans GB', 'Sarasa UI SC', '更纱黑体 UI SC', system-ui, sans-serif;
+  /* 字体族全局声明 (100% 开源字体 + 系统原生公有字体链) */
+  /* UI 控件：现代几何人文无衬线 + 苹果原生人文黑体 (苹方/冬青) */
+  --ag-font-ui: 'SF Pro Text', 'Inter', 'DM Sans', -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Hiragino Sans GB', 'Sarasa UI SC', '更纱黑体 UI SC', system-ui, sans-serif;
   
-  /* 正文阅读 (预设 1)：完全对齐 Antigravity 对话输入框配置 (Sarasa Mono Slab SC + Anthropic Mono + 等宽回退) */
-  --ag-font-content: 'Sarasa Mono Slab SC', '等距更纱黑体 Slab SC', 'Anthropic Mono', ui-monospace, monospace;
+  /* 正文阅读 (预设 1)：开源更纱粗衬线打字机体 (Sarasa Mono Slab SC + JetBrains Mono + 等宽回退) */
+  --ag-font-content: 'Sarasa Mono Slab SC', '等距更纱黑体 Slab SC', 'JetBrains Mono', ui-monospace, 'SFMono-Regular', Menlo, Monaco, Consolas, monospace;
   
-  /* 正文阅读 (预设 2)：西文无衬线 + 中文苹果原生宋体-简 */
-  --ag-font-notion-serif: 'Chuanban Western Sans', 'Anthropic Sans', 'Anthropic Sans Web', 'Songti SC', 'Songti TC', 'STSong', serif;
+  /* 正文阅读 (预设 2)：西文无衬线 + 中文原生宋体-简 */
+  --ag-font-notion-serif: 'Chuanban Western Sans', 'Songti SC', 'Songti TC', 'STSong', 'Newsreader', 'Source Serif 4', 'Georgia', serif;
 
-  /* 代码与技术徽章：等宽更纱黑体 Slab 的绝对主场 (严格 1:2 中西文打字机等宽) */
-  --ag-font-mono: 'Anthropic Mono', 'Anthropic Mono Web', 'Sarasa Mono Slab SC', '等距更纱黑体 Slab SC', 'Sarasa Mono SC', '等距更纱黑体 SC', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  /* 代码与技术徽章：等宽更纱黑体 Slab 与开源等宽字体 */
+  --ag-font-mono: 'Sarasa Mono Slab SC', '等距更纱黑体 Slab SC', 'Sarasa Mono SC', '等距更纱黑体 SC', 'JetBrains Mono', ui-monospace, 'SFMono-Regular', Menlo, Monaco, Consolas, monospace;
 
   /* 注入 Obsidian 系统变量 (标准主题规范：默认采用主题预设，同时完美支持原生设置菜单的自定义覆盖) */
   --font-interface-theme: var(--ag-font-ui);
@@ -191,7 +157,7 @@ body {
   --blockquote-background-color: var(--background-primary-alt);
 }
 
-/* --- 浅色主题 (对标 AntiGravity chuanban-warm-white 默认首选) --- */
+/* --- 浅色主题 (chuanban 暖白象牙默认首选) --- */
 .theme-light {
   /* 背景层次 */
   --background-primary: #FCFCFB;                  /* 主编辑/阅读区：微暖亮白纸质 */
@@ -214,7 +180,7 @@ body {
   --text-normal: #1F1E1D;                         /* 温暖炭黑正文 */
   --text-muted: #7A7670;                          /* 次要分类与辅助标签 */
   --text-faint: #9C978F;                          /* 占位符与微弱标识 */
-  --text-accent: #D97757;                         /* Anthropic 标志性陶土砖红 */
+  --text-accent: #D97757;                         /* 温暖陶土砖红 */
   --text-accent-hover: #C56345;
   --text-selection: rgba(120, 168, 110, 0.30);   /* 护眼柔和草绿圈选（低饱和度，不刺眼） */
   --text-selection-match: rgba(120, 168, 110, 0.16);
@@ -395,7 +361,7 @@ body {
 }
 
 /* ==============================================================================
-   3.1 主工作区标签栏 (Editor Tabs in mod-root) - 正统 AntiGravity 书卷卡片形态
+   3.1 主工作区标签栏 (Editor Tabs in mod-root) - 书卷卡片形态
    ============================================================================== */
 .mod-root .workspace-tab-header-container {
   background-color: var(--tab-container-background) !important;
@@ -629,7 +595,7 @@ input.nn-search-input:focus {
   color: var(--text-normal) !important;
 }
 
-/* 分组小标题 (今天、过去 7 天、月份等)：对标 AntiGravity 置顶/项目小标题 */
+/* 分组小标题 (今天、过去 7 天、月份等)：置顶/项目小标题 */
 .nn-list-group-header {
   height: 24px !important;
   padding: 4px 12px 2px 12px !important;
@@ -1002,7 +968,7 @@ body {
   color: var(--text-normal) !important;
 }
 
-/* 属性标签小胶囊 (统一为 Anthropic 陶土色与暖调) */
+/* 属性标签小胶囊 (统一为陶土色与暖调) */
 .metadata-property-value .multi-select-pill,
 .metadata-property-value .tag,
 a.tag {
@@ -1046,7 +1012,7 @@ a.tag:hover {
   background-color: var(--background-primary) !important;
 }
 
-/* 核心阅读区：完全对标 Antigravity 对话输入框排版 (18px 物理实体字号、1.72 致密行高、0.25px 润墨实体感柔化) */
+/* 核心阅读区：现代书卷排版 (18px 物理实体字号、1.72 致密行高、0.25px 润墨实体感柔化) */
 .markdown-rendered,
 .markdown-source-view.mod-cm6 .cm-content,
 .markdown-source-view.mod-cm6 .cm-line {
@@ -1176,7 +1142,7 @@ mark,
   text-shadow: none !important;
 }
 
-/* 文章主标题 (H1 / Inline Title) - 纯正 Claude 书卷留白，移除死板下划线 */
+/* 文章主标题 (H1 / Inline Title) - 书卷留白，移除死板下划线 */
 .inline-title,
 .markdown-rendered h1,
 .cm-header-1 {
@@ -1208,7 +1174,7 @@ mark,
   margin-bottom: 0.5em !important;
 }
 
-/* 块引用 (Blockquote)：Anthropic 陶土砖红前缀与暖象牙米底卡片 */
+/* 块引用 (Blockquote)：陶土砖红前缀与暖象牙米底卡片 */
 /* 7.1 阅读视图 (Reading View) */
 .markdown-rendered blockquote {
   border-left: 3px solid #D97757 !important;
@@ -1291,7 +1257,7 @@ span.cm-quote {
 }
 
 /* 7.3 呼出区块与写作分区体系 (Callouts & Writing Zones)
-   - 全局支持 Antigravity / Claude 暖调卡片视觉与圆角
+   - 全局支持暖调卡片视觉与圆角
    - 原生集成船板专属写作工作区四分区：
      • [!想法] / [!idea]：琥珀暖金 (灯泡 lightbulb)
      • [!草稿] / [!draft]：护眼柔和草绿 (铅笔 pencil)
@@ -1386,7 +1352,7 @@ pre,
   font-variant-ligatures: normal;
 }
 
-/* 行内代码胶囊 - Claude 标志性陶土暖红技术徽章 (限定在非代码块行内) */
+/* 行内代码胶囊 - 陶土暖红技术徽章 (限定在非代码块行内) */
 .cm-line:not(.HyperMD-codeblock) .cm-inline-code,
 .markdown-rendered code:not(pre code) {
   background-color: rgba(217, 119, 87, 0.08) !important;
