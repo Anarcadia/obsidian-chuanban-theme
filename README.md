@@ -2,7 +2,7 @@
 
 ![chuanban Theme Screenshot](screenshot.png)
 
-**chuanban** is a warm, high-contrast paper-and-ink light theme crafted for novelists, essayists, and deep long-form writers in Obsidian. It combines warm ivory and oat paper surfaces, terracotta accents, tactile ink-softening typography, high-density page preview popovers, and dual built-in CJK/Western typography presets.
+**chuanban** is a warm, high-contrast paper-and-ink light theme crafted for novelists, essayists, and deep long-form writers in Obsidian. It combines warm ivory and oat paper surfaces, terracotta accents, tactile ink-softening typography, and high-density page preview popovers.
 
 ---
 
@@ -14,10 +14,10 @@
 - **Terracotta Accent (`#D97757`)**: Used for active tabs, blockquotes, links, and focus indicators.
 - **Eye-Care Selection & Highlight**: Soft sage-green text selection (`rgba(130, 175, 138, 0.24)`) + warm amber marker highlight (`rgba(232, 197, 110, 0.28)`).
 
-### 2. Dual Built-in Typography Presets (双排版预设切换)
-Switch seamlessly via the **Style Settings** plugin (`chuanban -> Typography Preset`), `body.preset-notion-serif` class, or per-note YAML `cssclasses: [preset-notion-serif]`:
+### 2. Built-in CJK/Western Typography Styles (内置双排版样式)
+> **Note**: As an official Obsidian Community Theme, this package is a **pure CSS theme** and does not bundle any third-party plugins. Out of the box, it defaults to **Typewriter Slab**. If you wish to switch to the built-in **Classic Songti Serif** style, you can either add `cssclasses: [preset-songti-serif]` to a note's YAML frontmatter or use the community **Style Settings** plugin (`chuanban -> Typography Preset`).
 
-| Feature | Preset 1: Typewriter Slab (Default / 默认) | Preset 2: Notion Serif (衬线宋体预设) |
+| Feature | Default: Typewriter Slab (更纱打字机体 · 默认开箱即用) | Optional: Classic Songti Serif (经典书卷宋体 · `preset-songti-serif`) |
 | :--- | :--- | :--- |
 | **Font Stack** | `Sarasa Mono Slab SC` (`等距更纱黑体 Slab SC`) | Western Sans (`SF Pro Text` / `Inter`) + `Songti SC` (`宋体-简` 全角方块排布) |
 | **Line Height** | `1.78` | `1.68` |
@@ -33,11 +33,11 @@ Switch seamlessly via the **Style Settings** plugin (`chuanban -> Typography Pre
 ## 🔤 Recommended Fonts / 推荐字体安装
 
 For the best typography experience on macOS / Windows / Linux:
-1. **Sarasa Mono Slab SC (`等距更纱黑体 Slab SC`)** — Recommended for Preset 1 (Typewriter Slab):
+1. **Sarasa Mono Slab SC (`等距更纱黑体 Slab SC`)** — Recommended for the default Typewriter Slab style:
    ```bash
    brew install --cask font-sarasa-gothic
    ```
-2. **Songti SC (`宋体-简`)** — Built into macOS for Preset 2 (Notion Serif).
+2. **Songti SC (`宋体-简`)** — Built into macOS for the optional Classic Songti Serif style.
 
 ---
 
