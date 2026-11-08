@@ -41,6 +41,20 @@ For the best typography experience on macOS / Windows / Linux:
 
 ---
 
+## 📝 Changelog / 更新日志
+
+See [CHANGELOG.md](CHANGELOG.md) for full details.
+
+- **`v1.0.3` (2026-11-08)** — **Windows / Linux / macOS Hidden Frameless Titlebar Compatibility Fix (Windows/Linux 隐藏标题栏模式顶栏遮挡与窗口按钮预留区修复)**:
+  - Fixed `.titlebar` forcing an opaque background in `body.is-hidden-frameless` mode on Windows/Linux, which previously covered the top-left and top-right sidebar icons and tab bar.
+  - Preserved `--frame-left-space` and `--frame-right-space` on `.workspace-tabs.mod-top-left-space` / `.mod-top-right-space` so top-right icons never collide with Windows `- □ ×` window buttons or macOS traffic lights.
+  - Added `.mod-right-split .workspace-tab-header-inner` and `.workspace-tab-header-container-inner` resets to prevent right-sidebar icon clipping.
+- **`v1.0.2` (2026-11-02)** — Updated theme showcase screenshot and clarified built-in typography presets (`preset-songti-serif`).
+- **`v1.0.1` (2026-11-02)** — Standardized typography stacks on open-source (`Sarasa Mono Slab SC`, `Inter`, `JetBrains Mono`) and native system fonts.
+- **`v1.0.0` (2026-11-01)** — Initial official release of `chuanban`.
+
+---
+
 ## 📄 License
 
 [MIT License](LICENSE) © 2026 chuanban ([Anarcadia](https://github.com/Anarcadia))
