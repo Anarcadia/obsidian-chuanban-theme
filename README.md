@@ -45,6 +45,9 @@ For the best typography experience on macOS / Windows / Linux:
 
 See [CHANGELOG.md](CHANGELOG.md) for full details.
 
+- **`v1.0.4` (2026-11-10)** — **Windows Crisp CJK Fallback & Native Font Picker Integration (补齐 Windows 裸机微软雅黑/思源黑体清晰回退链，并全面打通 Obsidian 原生字体选择菜单)**:
+  - Added `Source Han Sans SC` / `Noto Sans CJK SC` and `Microsoft YaHei UI` / `Microsoft YaHei` before `monospace` in `--ag-font-content`, `--ag-font-ui`, and `--ag-font-mono` so bare Windows systems without `Sarasa Mono Slab SC` never fall back to thin `NSimSun` (新宋体).
+  - Fixed `--font-text-override` comma-list resolution across `--font-text`, `--font-interface`, `--font-monospace`, and `.preset-songti-serif` so custom fonts chosen in Obsidian `Settings → Appearance → Font` take effect immediately.
 - **`v1.0.3` (2026-11-08)** — **Windows / Linux / macOS Hidden Frameless Titlebar Compatibility Fix (Windows/Linux 隐藏标题栏模式顶栏遮挡与窗口按钮预留区修复)**:
   - Fixed `.titlebar` forcing an opaque background in `body.is-hidden-frameless` mode on Windows/Linux, which previously covered the top-left and top-right sidebar icons and tab bar.
   - Preserved `--frame-left-space` and `--frame-right-space` on `.workspace-tabs.mod-top-left-space` / `.mod-top-right-space` so top-right icons never collide with Windows `- □ ×` window buttons or macOS traffic lights.

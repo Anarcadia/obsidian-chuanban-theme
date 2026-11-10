@@ -4,6 +4,16 @@ All notable changes to **`chuanban`** are documented in this file.
 
 ---
 
+## [1.0.4] - 2026-11-10
+
+### Fixed / 修复
+- **Windows Crisp CJK Fallback（补齐 Windows 裸机思源黑体/微软雅黑清晰中文字体回退链）**:
+  - Added `'Source Han Sans SC', 'Noto Sans CJK SC', 'PingFang SC', 'Microsoft YaHei UI', 'Microsoft YaHei'` before `monospace` in `--ag-font-content`, `--ag-font-ui`, and `--ag-font-mono`, preventing bare Windows machines (without `Sarasa Mono Slab SC`) from falling back to thin 1px `NSimSun` (新宋体).
+- **Obsidian Native Appearance Font Picker Integration（修复 `--font-text-override` 逗号并列语法，全面打通 Obsidian 原生字体选择菜单）**:
+  - Updated `--font-interface`, `--font-text`, `--font-monospace`, and `.preset-songti-serif` to use Obsidian's comma-separated `var(--font-text-override), var(--font-text-theme)` contract so selecting any custom font in `Settings → Appearance → Font` takes effect immediately across both Reading and Editing modes.
+
+---
+
 ## [1.0.3] - 2026-11-08
 
 ### Fixed / 修复
