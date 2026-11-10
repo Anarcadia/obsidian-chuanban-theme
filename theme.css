@@ -112,17 +112,17 @@ settings:
    ============================================================================== */
 body {
   /* 字体族全局声明 (100% 开源字体 + 系统原生公有字体链) */
-  /* UI 控件：现代几何人文无衬线 + 苹果原生人文黑体 (苹方/冬青) */
-  --ag-font-ui: 'SF Pro Text', 'Inter', 'DM Sans', -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Hiragino Sans GB', 'Sarasa UI SC', '更纱黑体 UI SC', system-ui, sans-serif;
+  /* UI 控件：现代几何人文无衬线 + 苹果原生人文黑体 (苹方/冬青) + Windows 微软雅黑兜底 */
+  --ag-font-ui: 'SF Pro Text', 'Inter', 'DM Sans', -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Hiragino Sans GB', 'Sarasa UI SC', '更纱黑体 UI SC', 'Source Han Sans SC', 'Noto Sans CJK SC', 'Microsoft YaHei UI', 'Microsoft YaHei', system-ui, sans-serif;
   
-  /* 正文阅读 (预设 1)：开源更纱粗衬线打字机体 (Sarasa Mono Slab SC + JetBrains Mono + 等宽回退) */
-  --ag-font-content: 'Sarasa Mono Slab SC', '等距更纱黑体 Slab SC', 'JetBrains Mono', ui-monospace, 'SFMono-Regular', Menlo, Monaco, Consolas, monospace;
+  /* 正文阅读 (预设 1)：开源更纱粗衬线打字机体 (Sarasa Mono Slab SC + JetBrains Mono + 思源/苹方/微软雅黑兜底) */
+  --ag-font-content: 'Sarasa Mono Slab SC', '等距更纱黑体 Slab SC', 'JetBrains Mono', ui-monospace, 'SFMono-Regular', Menlo, Monaco, 'Cascadia Mono', Consolas, 'Source Han Sans SC', 'Noto Sans CJK SC', 'PingFang SC', 'Microsoft YaHei UI', 'Microsoft YaHei', monospace;
   
   /* 正文阅读 (预设 2 · 经典书卷宋体)：西文无衬线 + 中文原生宋体-简 */
-  --ag-font-songti-serif: 'Chuanban Western Sans', 'Songti SC', 'Songti TC', 'STSong', 'Newsreader', 'Source Serif 4', 'Georgia', serif;
+  --ag-font-songti-serif: 'Chuanban Western Sans', 'Songti SC', 'Songti TC', 'STSong', 'SimSun', 'NSimSun', 'Newsreader', 'Source Serif 4', 'Georgia', serif;
 
   /* 代码与技术徽章：等宽更纱黑体 Slab 与开源等宽字体 */
-  --ag-font-mono: 'Sarasa Mono Slab SC', '等距更纱黑体 Slab SC', 'Sarasa Mono SC', '等距更纱黑体 SC', 'JetBrains Mono', ui-monospace, 'SFMono-Regular', Menlo, Monaco, Consolas, monospace;
+  --ag-font-mono: 'Sarasa Mono Slab SC', '等距更纱黑体 Slab SC', 'Sarasa Mono SC', '等距更纱黑体 SC', 'JetBrains Mono', ui-monospace, 'SFMono-Regular', Menlo, Monaco, 'Cascadia Mono', Consolas, 'Source Han Sans SC', 'Noto Sans CJK SC', 'PingFang SC', 'Microsoft YaHei UI', 'Microsoft YaHei', monospace;
 
   /* 注入 Obsidian 系统变量 (标准主题规范：默认采用主题预设，同时完美支持原生设置菜单的自定义覆盖) */
   --font-interface-theme: var(--ag-font-ui);
@@ -131,9 +131,9 @@ body {
 
   --font-text-size: 18px; /* 主题默认基准字号：18px 实体书卷质感 */
 
-  --font-interface: var(--font-interface-override, var(--font-interface-theme));
-  --font-text: var(--font-text-override, var(--font-text-theme));
-  --font-monospace: var(--font-monospace-override, var(--font-monospace-theme));
+  --font-interface: var(--font-interface-override), var(--font-interface-theme);
+  --font-text: var(--font-text-override), var(--font-text-theme);
+  --font-monospace: var(--font-monospace-override), var(--font-monospace-theme);
 
   /* 基础微调 (黄金呼吸比例：行高 1.78，消除挤压紧密感) */
   --radius-s: 4px;
@@ -1730,7 +1730,7 @@ body.preset-songti-serif,
 body.preset-notion-serif,
 .preset-notion-serif {
   --font-text-theme: var(--ag-font-songti-serif);
-  --font-text: var(--font-text-override, var(--font-text-theme));
+  --font-text: var(--font-text-override), var(--font-text-theme);
   --line-height-normal: 1.68;
   --p-spacing: 1.05em;
 }
@@ -1753,7 +1753,7 @@ body.preset-notion-serif .markdown-source-view.mod-cm6 .cm-line,
 .preset-notion-serif .markdown-source-view.mod-cm6 .cm-content,
 .preset-notion-serif.markdown-source-view.mod-cm6 .cm-line,
 .preset-notion-serif .markdown-source-view.mod-cm6 .cm-line {
-  font-family: var(--ag-font-songti-serif) !important;
+  font-family: var(--font-text-override), var(--ag-font-songti-serif) !important;
   line-height: var(--line-height-normal) !important;
   letter-spacing: normal !important;
   text-shadow: none !important;
